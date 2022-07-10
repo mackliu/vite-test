@@ -1,12 +1,25 @@
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import {ref} from 'vue';
+import MsgBox from './components/MsgBox.vue'
+
+const emit=defineEmits(['close'])
+
+const show=ref(false)
+
+const pop=()=>{
+    show.value=true
+}
+
+const close=()=>{
+    show.value=false;
+}
+
 </script>
 
+
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <button @click="pop()">彈出視窗</button>
+  <MsgBox :show="show" @close="close" />
 </template>
 
 <style>
