@@ -1,25 +1,17 @@
 <script setup>
 import {ref} from 'vue';
-import MsgBox from './components/MsgBox.vue'
+import MsgBox from './components/MsgBox.vue';
+import {useModal} from './modalStore';
 
-const emit=defineEmits(['close'])
+const store=useModal();
 
-const show=ref(false)
-
-const pop=()=>{
-    show.value=true
-}
-
-const close=()=>{
-    show.value=false;
-}
 
 </script>
 
 
 <template>
-  <button @click="pop()">彈出視窗</button>
-  <MsgBox :show="show" @close="close" />
+  <button @click="store.pop()">彈出視窗</button>
+  <MsgBox v-show="store.show"/>
 </template>
 
 <style>

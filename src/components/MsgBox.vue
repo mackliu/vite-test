@@ -1,16 +1,14 @@
 <script setup>
 import {ref} from 'vue';
 import modal from './modal.vue';
+import {useModal} from '../modalStore';
 
-const props=defineProps({show:false});
-const emit=defineEmits(['close']);
+const store=useModal();
+const title="訊息視窗";
 
-const close=()=>{
-    emit('close')
-}
 </script>
 <template>
-<modal :show="show" @close="close">
+<modal v-show="store.show">
   <div class="msg-box">
     <div class="header">
       {{ title }}
@@ -20,7 +18,7 @@ const close=()=>{
     </div>
     <div class="footer">
         <button class="btn btn-blue">確定</button>
-        <button class="btn btn-yellow" @click="close">取消</button>
+        <button class="btn btn-yellow" @click="store.close()">取消</button>
     </div>
   </div>
 </modal>
@@ -68,6 +66,4 @@ const close=()=>{
   font-size:1rem;
   font-weight: bolder;
 }
-
-
 </style>

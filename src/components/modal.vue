@@ -1,20 +1,15 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
+import {useModal} from '../modalStore';
 const title=ref('訊息視窗')
-
-const props=defineProps({show:false});
-const emit=defineEmits(['close']);
-
-const close=()=>{
-  emit('close');
-}
+const store=useModal();
 
 </script>
 
 <template>
 <div class="modal">
-<div class="wall" v-show="show" @click="close"></div>
-<div class="box" v-show="show">
+<div class="wall" v-show="store.show" @click="store.close()"></div>
+<div class="box" v-show="store.show">
   <slot></slot>
 </div>
 </div>
