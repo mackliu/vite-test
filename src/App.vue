@@ -10,6 +10,7 @@ const store=useModal();
 
 
 <template>
+  <h1>彈出視窗測試</h1>
   <button @click="store.pop()">彈出視窗</button>
   <MsgBox v-show="store.show"/>
 </template>
